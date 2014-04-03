@@ -1,4 +1,4 @@
-package com.sqrl.crypto;
+package net.i2p.crypto;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -6,11 +6,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import net.i2p.util.NativeBigInteger;
+
+
 /* Written by k3d3
  * Released to the public domain
  */
 
-public class ed25519 {
+public class NBIed25519 {
 	static final int b = 256;
 	static final BigInteger q = new BigInteger("57896044618658097711785492504343953926634992332820282019728792003956564819949");
 	static final BigInteger qm2 = new BigInteger("57896044618658097711785492504343953926634992332820282019728792003956564819947");
@@ -37,6 +40,7 @@ public class ed25519 {
 	}
 	
 	private static BigInteger expmod(BigInteger b, BigInteger e, BigInteger m) {
+		b = new NativeBigInteger(b);
 		return b.modPow(e, m);
 	}
 	
