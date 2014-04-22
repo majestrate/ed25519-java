@@ -79,10 +79,10 @@ public class Curve25519
         out.println("pklen = " + Curve25519.PUBKEY_LENGTH);
         out.println("sig   = " + Curve25519.SIG_LENGTH);
                     
-        rand.nextBytes(sk);
+        //rand.nextBytes(sk);
         out.println("sk    = "+dump(sk));
         
-        byte [] data = "test data".getBytes();
+        byte [] data = "0123456789".getBytes();
         out.println("data  = "+dump(data));  
        
         byte [] pk = Curve25519.publickey(sk);

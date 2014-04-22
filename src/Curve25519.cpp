@@ -49,9 +49,9 @@ JNIEXPORT jbyteArray JNICALL Java_Curve25519__1crypto_1sign
 
     // sign
     // this function's behavior is completely deterministic, except when it's not
-    curve25519_sign(sm, &smlen,
-                    msg, msglen, 
-                    sk); 
+    ed25519_sign(sm, &smlen,
+                 msg, msglen, 
+                 sk); 
     
 
     // allocate and copy in signature 
@@ -84,6 +84,7 @@ JNIEXPORT jboolean JNICALL Java_Curve25519__1crypto_1verify
     unsigned long long ind;
 
     unsigned long long smlen = CRYPTO_BYTES + jmsglen;
+    printf("%lld",smlen);
     unsigned char sm[smlen];
     unsigned char pk[CRYPTO_PUBLICKEYBYTES];
     
@@ -101,7 +102,7 @@ JNIEXPORT jboolean JNICALL Java_Curve25519__1crypto_1verify
 
     // check for valid signature
     // behavior is also totally deterministic except when it's not
-    if ( curve25519_open(msg, &msglen, sm, smlen, pk) == 0 ) { 
+    if ( ed25519_open(msg, &msglen, sm, smlen, pk) == 0 ) { 
         if ( msglen == jmsglen ) {
             valid = JNI_TRUE;
             for ( ind = 0 ; ind < msglen ; ++ind ) {
@@ -124,11 +125,12 @@ JNIEXPORT jbyteArray JNICALL Java_Curve25519_publickey
     jsize sksize = env->GetArrayLength(j_sk);
 
     unsigned char pk[CRYPTO_PUBLICKEYBYTES];
+    bzero(pk, CRYPTO_PUBLICKEYBYTES);
     unsigned char sk[sksize];
 
     memcpy(sk, jsk, sksize);
     
-    curve25519_pubkey(pk, sk);
+    ed25519_pubkey(pk, sk);
     
     env->ReleaseByteArrayElements(j_sk, jsk, 1);
     

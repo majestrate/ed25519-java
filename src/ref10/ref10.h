@@ -3,9 +3,9 @@
 #include "api.h"
 
 
-#define curve25519_sign crypto_sign
-#define curve25519_open crypto_sign_open
-#define curve25519_pubkey crypto_sign_keypair
+#define ed25519_sign crypto_sign
+#define ed25519_open crypto_sign_open
+#define ed25519_pubkey crypto_sign_keypair
 
 int crypto_sign_open(
   unsigned char *m,unsigned long long *mlen,
