@@ -5,22 +5,22 @@
 
 #define ed25519_sign crypto_sign
 #define ed25519_open crypto_sign_open
-#define ed25519_pubkey crypto_sign_keypair
+#define ed25519_pubkey crypto_sign_pubkey
 
-int crypto_sign_open(
+extern int crypto_sign_open(
   unsigned char *m,unsigned long long *mlen,
   const unsigned char *sm,unsigned long long smlen,
   const unsigned char *pk
 );
 
-int crypto_sign(
+extern int crypto_sign(
   unsigned char *sm,unsigned long long *smlen,
   const unsigned char *m,unsigned long long mlen,
   const unsigned char *sk
 );
 
 
-int crypto_sign_keypair(unsigned char *pk,unsigned char *sk);
+extern int crypto_sign_pubkey(unsigned char *pk,unsigned char *sk, unsigned char * seed);
 
 
 #endif

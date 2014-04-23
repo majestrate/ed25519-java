@@ -128,9 +128,7 @@ JNIEXPORT jbyteArray JNICALL Java_Curve25519_publickey
     bzero(pk, CRYPTO_PUBLICKEYBYTES);
     unsigned char sk[sksize];
 
-    memcpy(sk, jsk, sksize);
-    
-    ed25519_pubkey(pk, sk);
+    ed25519_pubkey(pk, sk, (unsigned char *) jsk);
     
     env->ReleaseByteArrayElements(j_sk, jsk, 1);
     

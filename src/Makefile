@@ -1,8 +1,8 @@
 CCFLAGS = -fPIC
 CXXFLAGS = -std=c++11 -nostdlib -fPIC
 JAVA_HOME = /usr/lib/jvm/default-java
-build:
-	$(CC) $(CCFLAGS) -c ref/*.c -Iinclude
+build: clean
+	$(CC) $(CCFLAGS) -c ref10/*.c -Iinclude
 	$(CC) $(CCFLAGS) -c nacl/sha512/*.c
 	$(CC) $(CCFLAGS) -c nacl/crypto_verify/*.c
 	$(CXX) $(CXXFLAGS) -c Curve25519.cpp -I$(JAVA_HOME)/include 
