@@ -10,9 +10,6 @@ public class LittleEndianEncoding implements Encoding {
         for (int i = 0; i < in.length; i++) {
             out[i] = in[in.length-1-i];
         }
-        for (int i = in.length; i < out.length; i++) {
-            out[i] = 0;
-        }
         return out;
     }
 
@@ -23,6 +20,7 @@ public class LittleEndianEncoding implements Encoding {
         for (int i = 0; i < in.length; i++) {
             out[i] = in[in.length-1-i];
         }
+        //XXX is it always positive?
         return new BigInteger(1, out);
     }
 }
